@@ -1,0 +1,24 @@
+{
+  "groups": [
+    {
+      "name": "quick.payment.base",
+      "type": "plus.extvos.builtin.payment.config.PaymentConfig",
+      "sourceType": "plus.extvos.builtin.payment.config.PaymentConfig",
+      "description": "支付基础配置."
+    },
+    {
+      "name": "quick.payment.wxpay",
+      "type": "plus.extvos.builtin.payment.service.wxpay.config.WxpayConfig",
+      "sourceType": "plus.extvos.builtin.payment.",
+      "description": "微信支付配置."
+    },
+    {
+      "name": "quick.payment.alipay",
+      "type": "plus.extvos.builtin.payment.service.alipay.config.AlipayConfig",
+      "sourceType": "plus.extvos.builtin.payment.service.alipay.config.AlipayConfig",
+      "description": "支付宝配置."
+    }
+  ],
+  "properties": [
+  ]
+}
