@@ -64,7 +64,7 @@ public class WxpayMethodImpl implements PaymentMethod {
     }
 
     /**
-     * @param serialNum
+     * @param serialNum string
      */
     @Override
     public void billCancel(String serialNum) {
@@ -72,7 +72,7 @@ public class WxpayMethodImpl implements PaymentMethod {
     }
 
     /**
-     * @param serialNum
+     * @param serialNum string
      */
     @Override
     public void billClose(String serialNum) {
@@ -80,9 +80,9 @@ public class WxpayMethodImpl implements PaymentMethod {
     }
 
     /**
-     * @param serialNum
-     * @param fee
-     * @param reason
+     * @param serialNum string
+     * @param fee integer
+     * @param reason string
      */
     @Override
     public void billRefund(String serialNum, int fee, String reason) {
@@ -90,7 +90,7 @@ public class WxpayMethodImpl implements PaymentMethod {
     }
 
     /**
-     * @param serialNum
+     * @param serialNum string
      */
     @Override
     public void billQuery(String serialNum) {
@@ -98,8 +98,8 @@ public class WxpayMethodImpl implements PaymentMethod {
     }
 
     /**
-     * @param request
-     * @param response
+     * @param request http request
+     * @param response http response
      */
     @Override
     public void notifyHandle(HttpServletRequest request, HttpServletResponse response) {

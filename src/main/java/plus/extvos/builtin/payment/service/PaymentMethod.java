@@ -49,30 +49,30 @@ public interface PaymentMethod {
     PrepayBill pay(String subject, String refId, int fee);
 
     /**
-     * @param serialNum
+     * @param serialNum string
      */
     void billCancel(String serialNum);
 
     /**
-     * @param serialNum
+     * @param serialNum string
      */
     void billClose(String serialNum);
 
     /**
-     * @param serialNum
-     * @param fee
-     * @param reason
+     * @param serialNum string
+     * @param fee integer
+     * @param reason string
      */
     void billRefund(String serialNum, int fee, String reason);
 
     /**
-     * @param serialNum
+     * @param serialNum string
      */
     void billQuery(String serialNum);
 
     /**
-     * @param request
-     * @param response
+     * @param request http request
+     * @param response http response
      */
     void notifyHandle(HttpServletRequest request, HttpServletResponse response);
 }
