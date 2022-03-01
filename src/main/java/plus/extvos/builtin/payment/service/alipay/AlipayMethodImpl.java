@@ -1,7 +1,10 @@
 package plus.extvos.builtin.payment.service.alipay;
 
+import org.springframework.stereotype.Service;
 import plus.extvos.builtin.payment.dto.PrepayBill;
 import plus.extvos.builtin.payment.service.PaymentMethod;
+import plus.extvos.common.Result;
+import plus.extvos.common.exception.ResultException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -9,7 +12,14 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * @author shenmc
  */
+@Service
 public class AlipayMethodImpl implements PaymentMethod {
+
+    private static final String SLUG = "alipay";
+    private static final String NAME = "支付宝";
+    private static final String DESC = "支付宝";
+
+
     /**
      * slug
      *
@@ -17,7 +27,7 @@ public class AlipayMethodImpl implements PaymentMethod {
      */
     @Override
     public String slug() {
-        return null;
+        return SLUG;
     }
 
     /**
@@ -27,7 +37,7 @@ public class AlipayMethodImpl implements PaymentMethod {
      */
     @Override
     public String name() {
-        return null;
+        return NAME;
     }
 
     /**
@@ -37,7 +47,7 @@ public class AlipayMethodImpl implements PaymentMethod {
      */
     @Override
     public String description() {
-        return null;
+        return DESC;
     }
 
     /**
@@ -67,7 +77,7 @@ public class AlipayMethodImpl implements PaymentMethod {
      * @param serialNum string
      */
     @Override
-    public void billCancel(String serialNum) {
+    public void cancelBill(String serialNum) {
 
     }
 
@@ -75,17 +85,17 @@ public class AlipayMethodImpl implements PaymentMethod {
      * @param serialNum string
      */
     @Override
-    public void billClose(String serialNum) {
+    public void closeBill(String serialNum) {
 
     }
 
     /**
      * @param serialNum string
-     * @param fee integer
-     * @param reason string
+     * @param fee       integer
+     * @param reason    string
      */
     @Override
-    public void billRefund(String serialNum, int fee, String reason) {
+    public void refundBill(String serialNum, int fee, String reason) {
 
     }
 
@@ -93,16 +103,16 @@ public class AlipayMethodImpl implements PaymentMethod {
      * @param serialNum string
      */
     @Override
-    public void billQuery(String serialNum) {
+    public void queryBill(String serialNum) {
 
     }
 
     /**
-     * @param request http request
+     * @param request  http request
      * @param response http response
      */
     @Override
-    public void notifyHandle(HttpServletRequest request, HttpServletResponse response) {
-
+    public Result<?> notifyHandle(HttpServletRequest request, HttpServletResponse response) throws ResultException {
+        throw ResultException.notImplemented();
     }
 }

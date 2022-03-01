@@ -1,7 +1,15 @@
 package plus.extvos.builtin.payment.service.wxpay;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Service;
+import plus.extvos.builtin.payment.config.PaymentConfig;
 import plus.extvos.builtin.payment.dto.PrepayBill;
 import plus.extvos.builtin.payment.service.PaymentMethod;
+import plus.extvos.builtin.payment.service.wxpay.config.WxpayConfig;
+import plus.extvos.builtin.payment.service.wxpay.sdk.WXPay;
+import plus.extvos.common.Result;
+import plus.extvos.common.exception.ResultException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -9,7 +17,14 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * @author shenmc
  */
+@Service
 public class WxpayMethodImpl implements PaymentMethod {
+
+    private static final String SLUG = "wxpay";
+    private static final String NAME = "微信支付";
+    private static final String DESC = "微信支付";
+
+
     /**
      * slug
      *
@@ -17,7 +32,7 @@ public class WxpayMethodImpl implements PaymentMethod {
      */
     @Override
     public String slug() {
-        return null;
+        return SLUG;
     }
 
     /**
@@ -27,7 +42,7 @@ public class WxpayMethodImpl implements PaymentMethod {
      */
     @Override
     public String name() {
-        return null;
+        return NAME;
     }
 
     /**
@@ -37,7 +52,7 @@ public class WxpayMethodImpl implements PaymentMethod {
      */
     @Override
     public String description() {
-        return null;
+        return DESC;
     }
 
     /**
@@ -48,6 +63,14 @@ public class WxpayMethodImpl implements PaymentMethod {
     @Override
     public String logo() {
         return null;
+    }
+
+    @Autowired
+    private PaymentConfig paymentConfig;
+
+    @Bean
+    public WXPay makeWXPay(WxpayConfig cfg) throws Exception {
+        return new WXPay(cfg, paymentConfig.getNotifyUrl() + "/_builtin/payment/" + SLUG + "/notify", true, cfg.getSandbox());
     }
 
     /**
@@ -67,7 +90,7 @@ public class WxpayMethodImpl implements PaymentMethod {
      * @param serialNum string
      */
     @Override
-    public void billCancel(String serialNum) {
+    public void cancelBill(String serialNum) {
 
     }
 
@@ -75,17 +98,17 @@ public class WxpayMethodImpl implements PaymentMethod {
      * @param serialNum string
      */
     @Override
-    public void billClose(String serialNum) {
+    public void closeBill(String serialNum) {
 
     }
 
     /**
      * @param serialNum string
-     * @param fee integer
-     * @param reason string
+     * @param fee       integer
+     * @param reason    string
      */
     @Override
-    public void billRefund(String serialNum, int fee, String reason) {
+    public void refundBill(String serialNum, int fee, String reason) {
 
     }
 
@@ -93,16 +116,16 @@ public class WxpayMethodImpl implements PaymentMethod {
      * @param serialNum string
      */
     @Override
-    public void billQuery(String serialNum) {
+    public void queryBill(String serialNum) {
 
     }
 
     /**
-     * @param request http request
+     * @param request  http request
      * @param response http response
      */
     @Override
-    public void notifyHandle(HttpServletRequest request, HttpServletResponse response) {
-
+    public Result<?> notifyHandle(HttpServletRequest request, HttpServletResponse response) throws ResultException {
+        throw ResultException.notImplemented();
     }
 }

@@ -1,6 +1,8 @@
 package plus.extvos.builtin.payment.service;
 
 import plus.extvos.builtin.payment.dto.PrepayBill;
+import plus.extvos.common.Result;
+import plus.extvos.common.exception.ResultException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -49,30 +51,40 @@ public interface PaymentMethod {
     PrepayBill pay(String subject, String refId, int fee);
 
     /**
+     * Cancel payment bill
+     *
      * @param serialNum string
      */
-    void billCancel(String serialNum);
+    void cancelBill(String serialNum);
 
     /**
+     * Close payment bill
+     *
      * @param serialNum string
      */
-    void billClose(String serialNum);
+    void closeBill(String serialNum);
 
     /**
+     * Refund payment bill
+     *
      * @param serialNum string
-     * @param fee integer
-     * @param reason string
+     * @param fee       integer
+     * @param reason    string
      */
-    void billRefund(String serialNum, int fee, String reason);
+    void refundBill(String serialNum, int fee, String reason);
 
     /**
+     * Query payment bill
+     *
      * @param serialNum string
      */
-    void billQuery(String serialNum);
+    void queryBill(String serialNum);
 
     /**
-     * @param request http request
+     * Payment service notify handler
+     *
+     * @param request  http request
      * @param response http response
      */
-    void notifyHandle(HttpServletRequest request, HttpServletResponse response);
+    Result<?> notifyHandle(HttpServletRequest request, HttpServletResponse response) throws ResultException;
 }
