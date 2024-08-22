@@ -85,6 +85,9 @@ public interface PaymentMethod {
      *
      * @param request  http request
      * @param response http response
+     * @throws ResultException on error
+     *
+     * @return
      */
     Result<?> notifyHandle(HttpServletRequest request, HttpServletResponse response) throws ResultException;
 }
